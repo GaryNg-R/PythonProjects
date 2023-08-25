@@ -18,6 +18,11 @@ def wpm_test(stdscr):
 
     while True:
         key = stdscr.getkey()
+
+        #check if that is escape key ASCII  "a" = 97 "A" = 65 ....
+        if ord(key) == 27:
+            break
+
         current_test.append(key)
 
         stdscr.clear()
