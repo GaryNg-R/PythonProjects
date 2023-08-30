@@ -14,24 +14,32 @@ def start_screen(stdscr):
 
 def wpm_test(stdscr):
     target_test = "Hello world this is some test tesxt for this app!"
-    current_test = []
+    current_text = []
 
     while True:
+        stdscr.clear()
+        stdscr.addstr(target_test)
+
+        for char in current_text:
+            stdscr.addstr(char, curses.color_pair(1))
+
+        stdscr.refresh()
+
         key = stdscr.getkey()
 
         #check if that is escape key ASCII  "a" = 97 "A" = 65 ....
         if ord(key) == 27:
             break
+        
+        if key in ("KEY_BACKSPACE", '\b', "\x7f"):
+            if len(current_text) > 0:
+                current_text.pop()
+        else:
+                current_text.append(key)
+                
 
-        current_test.append(key)
 
-        stdscr.clear()
-        stdscr.addstr(target_test)
 
-        for char in current_test:
-            stdscr.addstr(char, curses.color_pair(1))
-
-        stdscr.refresh()
     
 
 def main(stdscr):
