@@ -2,9 +2,6 @@ import curses
 from curses import wrapper 
 
 
-
-
-
 def start_screen(stdscr):
     stdscr.clear()
     stdscr.addstr("Welcome to the Speed Typing Test!")
@@ -12,17 +9,20 @@ def start_screen(stdscr):
     stdscr.refresh()
     stdscr.getkey()
 
+def display_text(stdscr, target, current, wpm = 0):
+    stdscr.addstr(target)
+
+    #enumerate give us the index of the list too
+    for i, char in enumerate(current):
+        stdscr.addstr(0, i, char, curses.color_pair(1))
+
 def wpm_test(stdscr):
-    target_test = "Hello world this is some test tesxt for this app!"
+    target_text = "Hello world this is some test text for this app!"
     current_text = []
 
     while True:
         stdscr.clear()
-        stdscr.addstr(target_test)
-
-        for char in current_text:
-            stdscr.addstr(char, curses.color_pair(1))
-
+        display_text(stdscr, target_text, current_text)
         stdscr.refresh()
 
         key = stdscr.getkey()
