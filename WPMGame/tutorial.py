@@ -14,7 +14,12 @@ def display_text(stdscr, target, current, wpm = 0):
 
     #enumerate give us the index of the list too
     for i, char in enumerate(current):
-        stdscr.addstr(0, i, char, curses.color_pair(1))
+        correct_char = target[i]
+        color = curses.color_pair(1)
+        if char != correct_char: 
+             color = curses.color_pair(2)
+             
+        stdscr.addstr(0, i, char, color)
 
 def wpm_test(stdscr):
     target_text = "Hello world this is some test text for this app!"
