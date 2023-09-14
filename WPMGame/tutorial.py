@@ -18,7 +18,7 @@ def display_text(stdscr, target, current, wpm = 0):
         color = curses.color_pair(1)
         if char != correct_char: 
              color = curses.color_pair(2)
-             
+
         stdscr.addstr(0, i, char, color)
 
 def wpm_test(stdscr):
@@ -39,7 +39,7 @@ def wpm_test(stdscr):
         if key in ("KEY_BACKSPACE", '\b', "\x7f"):
             if len(current_text) > 0:
                 current_text.pop()
-        else:
+        elif len(current_text) < len(target_text):
                 current_text.append(key)
                 
 
